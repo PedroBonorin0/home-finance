@@ -1,16 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { Box, Grommet, grommet as grommetTheme } from 'grommet';
+import Sidebar from "./Sidebar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,8 +14,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+      <body style={{ height: '100%', margin: '0', padding: '0', boxSizing: 'border-box' }}>
+        <Grommet theme={grommetTheme}>
+          <Box align="start" justify="start" direction="row" margin={'0'} pad={'0'} height={'100%'} gap={'1.5rem'}>
+            <Sidebar />
+            <Box margin={{ top: '1.5rem' }}>
+              {children}
+            </Box>
+          </Box>
+        </Grommet>
       </body>
     </html>
   );
